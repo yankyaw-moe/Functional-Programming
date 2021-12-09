@@ -1,0 +1,18 @@
+<html>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.27.1/ramda.min.js" ></script>
+  <script>
+    
+    let auth = () => true;
+    const authGuard = (fun)=>{
+        return function(){
+            return !auth()?undefined:fun(...arguments);
+        }
+    }
+    function admin()
+    {
+        console.log("Admin");
+    }
+    let adminFun = authGuard(admin);
+    adminFun();
+  </script>
+</html>

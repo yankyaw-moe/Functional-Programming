@@ -1,0 +1,31 @@
+<html>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.27.1/ramda.min.js" ></script>
+  <script>
+    
+    let once = (fun) => {
+        let done = false;
+        return function(){
+            return done?undefined:(done=true,fun(...arguments))
+        }
+        // return function() {
+        //     if(done) {
+        //         return undefined
+        //     } else {
+        //         done = true
+        //         return fun(...arguments)
+        //     }
+        // }
+        
+    }
+
+    function callMeOnlyOnce(){
+        console.log("Hey...");
+    }
+    // callMeOnlyOnce();
+    // callMeOnlyOnce();
+
+    let callonce = once(callMeOnlyOnce);
+    callonce();
+    callonce();
+  </script>
+</html>

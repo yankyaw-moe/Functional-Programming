@@ -1,0 +1,27 @@
+<html>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.27.1/ramda.min.js" ></script>
+  <script>
+    
+    /*
+        parseInt func accept 2 params & map() is give 3 params
+        parseInt('1',0) 1
+        parseInt('2',1) NaN
+        parseInt('3',2) NaN
+    */
+    console.log(['1','2','3'].map(parseInt)); // [1, NaN, NaN]
+
+    let parse = x => parseInt(x);
+    console.log(['1','2','3'].map(parse));
+
+    const unary = (fun) => (
+        fun.length === 1? fun : (arg) => fun(arg)
+    )
+    console.log(['4','5','6'].map(unary(parseInt)));
+
+    const unary2 = (fun) => {
+        if(fun.length === 1) return fun;
+        else return (arg)=> fun(arg);
+    }
+    console.log(['4','5','6'].map(unary2(parseInt)));
+  </script>
+</html>

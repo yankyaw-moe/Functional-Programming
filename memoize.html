@@ -1,0 +1,32 @@
+<html>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.27.1/ramda.min.js" ></script>
+  <script>
+
+    // memoized
+    const memoize = (fun) => {
+        let memoizeData = {};
+        console.log("memoizeData ", memoizeData);
+        return function(x){
+            return memoizeData[x] || (memoizeData[x] = fun(x)); 
+        }
+    }
+    
+    const addOne = (x) => {
+        console.log("Called add +1 for ", x);
+        return x+1;
+    }
+    let res = addOne(3);
+    console.log("res ", res);
+    res = addOne(4);
+    console.log("res ", res);
+    res = addOne(3);
+    console.log("res ", res);
+
+    let memoizeAddOne = memoize(addOne);
+    console.log("gg ",memoizeAddOne(5));
+    console.log("gg ",memoizeAddOne(6));
+    console.log("gg ",memoizeAddOne(6));
+    console.log("gg ",memoizeAddOne(5));
+
+  </script>
+</html>

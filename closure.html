@@ -1,0 +1,14 @@
+<html>
+  <script>
+    function outer() {
+      let counter = 0;
+      return function inner() {
+        return counter++;
+      };
+    }
+
+    let inn = outer();
+    console.log(inn());
+    console.log(inn());
+  </script>
+</html>

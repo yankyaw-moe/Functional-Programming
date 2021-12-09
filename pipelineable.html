@@ -1,0 +1,23 @@
+<html>
+  <script>
+    function compose(a, b) {
+      return function (x) {
+        return a(b(x));
+      };
+    }
+
+    function toUpper(prop) {
+      return prop.toUpperCase();
+    }
+
+    function prependHi(str) {
+      return "Hi " + str;
+    }
+
+    let result = toUpper(prependHi("how are you!"));
+    console.log("Result ", result);
+
+    let toUpperAndPrepend = compose(toUpper, prependHi);
+    console.log("Compose Result ", toUpperAndPrepend("Hey Guys"));
+  </script>
+</html>

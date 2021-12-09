@@ -1,0 +1,52 @@
+<html>
+  <script src="https://cdn.jsdelivr.net/npm/ramda@0.25.0/dist/ramda.min.js"></script>
+  <script>
+    function tap(value, fn) {
+      fn(value);
+      return value;
+    }
+
+    let result = tap([1, 2, 3, 4], (array) => {
+      return array.pop();
+    });
+    console.log(result);
+
+    const tap2 = (value) => (fn) => (
+      typeof fn === "function" && fn(value), console.log(value)
+    )
+    // let result2 = tap2([1, 2, 3], (array) => {
+    //   return array.pop();
+    // });
+    tap2([1, 2, 3])((array) => {
+      return array.pop();
+    });
+    tap2("fun")((value) => console.log("value ",value))
+
+    // Using Ramda library
+    console.log(R)
+    const sayX = x => console.log('x is ' + x);
+    let res = R.tap(sayX, 100);
+    console.log("res ", res)
+
+    let print = R.tap(console.log);
+    let double = x => x *2;
+    print(double(3));
+
+    let addTwo = x => x+2;
+    print(addTwo(100));
+
+    // let addTwoAndDouble = R.pipe(addTwo,double);
+    // console.log("addTwoAndDouble ", addTwoAndDouble(3));
+
+    let log = R.tap(x=> console.log("x is ", x));
+    let addTwoAnddouble = R.pipe(
+        addTwo,
+        log,
+        // R.tap(x=> console.log("addTwo is ", x)),
+        double,
+        log
+        // R.tap(x => console.log("double is ", x))
+    )
+    console.log("final result is ", addTwoAnddouble(4));
+  </script>
+</html>
